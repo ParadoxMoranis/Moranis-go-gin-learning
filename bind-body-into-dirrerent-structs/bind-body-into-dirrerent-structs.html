@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gin Request Body Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        button { padding: 10px 20px; margin: 10px 0; }
+        pre { background: #f0f0f0; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Gin Request Body Demo</h1>
+
+    <!-- 测试 c.Request.Body 的按钮 -->
+    <button onclick="testRawBody()">Test Raw Body (c.Request.Body)</button>
+    <pre id="raw-body-result">Result will appear here...</pre>
+
+    <!-- 测试 c.ShouldBindBodyWith 的按钮 -->
+    <button onclick="testBindBody()">Test Bind Body (c.ShouldBindBodyWith)</button>
+    <pre id="bind-body-result">Result will appear here...</pre>
+
+    <script>
+        // 测试 c.Request.Body 的函数
+        async function testRawBody() {
+            const data = { name: "Alice", email: "alice@example.com" };
+            const response = await fetch('http://localhost:8080/raw-body', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await response.json();
+            document.getElementById('raw-body-result').textContent = JSON.stringify(result, null, 2);
+        }
+
+        // 测试 c.ShouldBindBodyWith 的函数
+        async function testBindBody() {
+            const data = { name: "Bob", email: "bob@example.com" };
+            const response = await fetch('http://localhost:8080/bind-body', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await response.json();
+            document.getElementById('bind-body-result').textContent = JSON.stringify(result, null, 2);
+        }
+    </script>
+</body>
+</html>
