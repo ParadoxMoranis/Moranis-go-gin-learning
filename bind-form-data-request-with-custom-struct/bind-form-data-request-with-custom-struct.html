@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>表单绑定示例</title>
+</head>
+<body>
+    <h2>提交数据</h2>
+    <form id="dataForm" method="get" action="http://localhost:8080/getb">
+        <label>Field A:</label><br>
+        <input type="text" name="field_a" required><br>
+        <label>Field B:</label><br>
+        <input type="text" name="field_b" required><br>
+        <button type="submit">提交</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("dataForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const url = `http://localhost:8080/getb?${new URLSearchParams(formData).toString()}`;
+            try {
+                const response = await fetch(url, {
+                    method: "GET",
+                    credentials: "include" // 如果需要支持凭据
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const result = await response.json();
+                document.getElementById("result").innerText = JSON.stringify(result, null, 2);
+            } catch (error) {
+                console.error("Fetch error:", error); // 打印详细错误信息
+                document.getElementById("result").innerText = "错误: " + error.message;
+            }
+        });
+    </script>
+</body>
+</html>

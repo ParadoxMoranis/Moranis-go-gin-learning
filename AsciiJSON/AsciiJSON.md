@@ -1,4 +1,4 @@
-### 什么是 `AsciiJSON`？
+### 官方文档第一讲：什么是 `AsciiJSON`？
 `AsciiJSON` 是 Go 的 `gin` 框架提供的一种响应方法，用于将数据序列化为 JSON 格式，并确保输出的 JSON 字符串是 **纯 ASCII 字符**。这意味着它会将非 ASCII 字符（如中文、日文等）转义为 Unicode 编码形式（例如 `\uXXXX`），以保证输出内容完全由 ASCII 字符组成。
 
 #### 作用
