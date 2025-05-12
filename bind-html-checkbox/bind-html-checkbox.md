@@ -125,11 +125,13 @@ func main() {
 **运行环境准备**：
 
 1. 确保已安装Go（建议1.20或以上版本）。
+
 2. 安装Gin框架：
    
    ```bash
    go get -u github.com/gin-gonic/gin
    ```
+
 3. 创建项目目录，将`main.go`和`index.html`放入其中。
 
 **运行步骤**：
@@ -141,14 +143,19 @@ func main() {
    ```
    
    服务器将在`localhost:8080`运行。
+
 2. 启动前端：
+   
    - 将`index.html`放入一个Web服务器：
      
      ```bash
      python3 -m http.server 8000
      ```
+   
    - 访问`http://localhost:8000`打开表单页面。
+
 3. 在页面上勾选颜色（例如“Red”和“Green”），点击“提交”。
+
 4. 页面下方会显示后端的JSON响应，例如：
    
    ```json
@@ -169,4 +176,5 @@ func main() {
 **注意事项**：
 
 - 确保前端和后端端口一致（前端`localhost:8000`，后端`localhost:8080`），若跨域需配置CORS（参考前文）。
-- 
+  
+  
